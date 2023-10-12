@@ -1,0 +1,4 @@
+KoolCenter Alist Changelog for HND platform
+===========================================
+1.0
+   - add  上线
