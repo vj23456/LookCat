@@ -34,8 +34,6 @@ close_lc_process(){
 	echo_date "🔺关闭网卡" | tee -a ${LOG_FILE}
 	iptables -t nat -D POSTROUTING -o $wan0 -d $net -j MASQUERADE
 	echo_date "🔺关闭防火墙端口！" | tee -a ${LOG_FILE}
-	rm -rf /koolshare/init.d/S99lookcat.sh
-	rm -rf /koolshare/init.d/N99lookcat.sh
 }
 
 start_lc_process(){
@@ -44,9 +42,7 @@ start_lc_process(){
     iptables -t nat -I POSTROUTING -o $wan0 -d $net -j MASQUERADE
     echo_date "🟢开启防火墙端口！" | tee -a ${LOG_FILE}
     if [ "${lookcat_start}" == "1" ]; then
-    	[ ! -L "/koolshare/init.d/S99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/S99lookcat.sh
-	    [ ! -L "/koolshare/init.d/N99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/N99lookcat.sh
-	    echo_date "🟢设置开机启动！" | tee -a ${LOG_FILE}
+	    echo_date "🟢已设置开机启动！" | tee -a ${LOG_FILE}
 	fi
 }
 
@@ -62,12 +58,13 @@ start_lc (){
 
 case $1 in
 start)
-	if [ "${lookcat_enable}" == "1" ]; then
+	if [ "${lookcat_enable}" == "1" ] && [ "${lookcat_start}" == "1" ]; then
 		sleep ${lookcat_sleep}
 		logger "[软件中心-开机自启]: 已经延迟${lookcat_sleep} 秒，LookCat开始启动！"
 		start_lc
 	else
 		logger "[软件中心-开机自启]: LookCat未开启，不自动启动！"
+		dbus set lookcat_enable=0
 	fi
 	;;
 start_nat)

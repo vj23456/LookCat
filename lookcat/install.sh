@@ -102,6 +102,8 @@ install_now() {
 	cp -rf /tmp/${module}/scripts/* /koolshare/scripts/
 	cp -rf /tmp/${module}/webs/* /koolshare/webs/
 	cp -rf /tmp/${module}/uninstall.sh /koolshare/scripts/uninstall_${module}.sh
+	[ ! -L "/koolshare/init.d/S99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/S99lookcat.sh
+    [ ! -L "/koolshare/init.d/N99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/N99lookcat.sh
 
 	# Permissions
 	chmod +x /koolshare/scripts/lookcat* >/dev/null 2>&1
