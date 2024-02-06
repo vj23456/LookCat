@@ -10,4 +10,4 @@ https://github.com/vj23456/LookCat
 
 ## 机型支持
 
-在asuswrt为基础的固件上，alist插件目前仅支持HND和MTK架构的路由器
+在asuswrt为基础的固件上，插件目前支持HND和MTK和QCA架构的路由器
