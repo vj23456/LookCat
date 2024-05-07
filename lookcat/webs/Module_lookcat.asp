@@ -462,6 +462,7 @@ function validateInput(input, minValue, maxValue) {
 										<div style="margin:10px 0 0 5px">
 											<li>1.请确保猫的IP和路由器的IP不在同一个网段（如猫IP是192.168.1.1，路由器IP是192.168.50.1）</li>
 											<li>2.通常情况下光猫开启DHCP，路由wan设置开启VPN+DHCP无需使用本插件。</li>
+                                                                                        <li>3.当光猫关闭DHCP时，设置好本插件即可在路由下直接访问光猫。</li>
 											
 										</div>
 									</td>
