@@ -1,5 +1,8 @@
 KoolCenter LookCat Changelog
 ===========================================
+1.3
+   - update  支持102固件
+
 1.2
    - fix  修改插件说明
 
