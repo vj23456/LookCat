@@ -59,8 +59,9 @@ start_lc (){
 case $1 in
 start)
 	if [ "${lookcat_enable}" == "1" ] && [ "${lookcat_start}" == "1" ]; then
-		sleep ${lookcat_sleep}
-		logger "[软件中心-开机自启]: 已经延迟${lookcat_sleep} 秒，LookCat开始启动！"
+		#sleep ${lookcat_sleep}
+		#logger "[软件中心-开机自启]: 已经延迟${lookcat_sleep} 秒，LookCat开始启动！"
+		logger "[软件中心-开机自启]: ，LookCat开始自动启动！"
 		start_lc
 	else
 		logger "[软件中心-开机自启]: LookCat未开启，不自动启动！"

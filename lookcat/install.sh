@@ -75,11 +75,11 @@ exit_install(){
 			echo_date "你的固件平台不能安装！！!"
 			echo_date "本插件支持机型/平台：https://github.com/koolshare/rogsoft#rogsoft"
 			echo_date "退出安装！"
-			rm -rf /tmp/ddnsgo* >/dev/null 2>&1
+			rm -rf /tmp/lookcat* >/dev/null 2>&1
 			exit 1
 			;;
 		0|*)
-			rm -rf /tmp/ddnsgo* >/dev/null 2>&1
+			rm -rf /tmp/lookcat* >/dev/null 2>&1
 			exit 0
 			;;
 	esac
@@ -94,7 +94,7 @@ install_now() {
 	# remove some files first, old file should be removed, too
 	find /koolshare/init.d/ -name "*lookcat*" | xargs rm -rf
 	rm -rf /koolshare/scripts/lookcat*.sh 2>/dev/null
-	rm -rf /koolshare/webs/*ddnsgo.sh 2>/dev/null
+	rm -rf /koolshare/webs/*lookcat.sh 2>/dev/null
 
 	# isntall file
 	echo_date "安装插件相关文件..."
@@ -102,8 +102,8 @@ install_now() {
 	cp -rf /tmp/${module}/scripts/* /koolshare/scripts/
 	cp -rf /tmp/${module}/webs/* /koolshare/webs/
 	cp -rf /tmp/${module}/uninstall.sh /koolshare/scripts/uninstall_${module}.sh
-	[ ! -L "/koolshare/init.d/S99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/S99lookcat.sh
-    [ ! -L "/koolshare/init.d/N99lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/N99lookcat.sh
+	[ ! -L "/koolshare/init.d/S160lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/S160lookcat.sh
+  [ ! -L "/koolshare/init.d/N160lookcat.sh" ] && ln -sf /koolshare/scripts/lookcat_config.sh /koolshare/init.d/N160lookcat.sh
 
 	# Permissions
 	chmod +x /koolshare/scripts/lookcat* >/dev/null 2>&1

@@ -124,9 +124,7 @@ i {
 	font-size:14px;
 	color:#FFFFFF;
 }
-#ddnsgo_db_settings_div{
-	border: none; /* W3C asuscss */
-}
+
 </style>
 <script type="text/javascript">
 var dbus = {};
@@ -137,7 +135,7 @@ var _responseLen;
 var STATUS_FLAG;
 var noChange = 0;
 var params_check = ['lookcat_start'];
-var params_input = ['lookcat_addr', 'lookcat_sleep'];
+var params_input = ['lookcat_addr'];
 
 String.prototype.myReplace = function(f, e){
 	var reg = new RegExp(f, "g"); 
@@ -160,8 +158,33 @@ function get_dbus_data(){
 			dbus = data.result[0];
 			conf2obj();
 			show_hide_element();
+			pannel_access();
 		}
 	});
+}
+
+function pannel_access(){
+	if(dbus["lookcat_enable"] == "1"){
+		var protocol = "http:";
+		var hostname = document.domain;
+		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
+			protocol = location.protocol;//如果是走的ddnsto则不管是否开启公网开关。
+			if(hostname.indexOf('.kooldns.cn') != -1){
+				hostname = hostname.replace('.kooldns.cn','-cat.kooldns.cn');
+			}else if(hostname.indexOf('.ddnsto.com') != -1){
+				hostname = hostname.replace('.ddnsto.com','-cat.ddnsto.com');
+			}else{
+				hostname = hostname.replace('.tocmcc.cn','-cat.tocmcc.cn');
+			}
+
+			webUiHref = protocol + "//" + hostname;
+		}else{
+			webUiHref = protocol + "//" + dbus["lookcat_addr"];
+		}
+
+		E("dgnav").href = webUiHref;
+		E("dgnav").innerHTML = "&nbsp;&nbsp;点击访问光猫&nbsp;&nbsp;";
+	}
 }
 
 function conf2obj(){
@@ -180,9 +203,11 @@ function conf2obj(){
 function show_hide_element(){
 	if(dbus["lookcat_enable"] == "1"){
 		E("dg_apply_1").style.display = "none";
+		E("lc_visit").style.display = "";
 		E("dg_apply_3").style.display = "";
 	}else{
 		E("dg_apply_1").style.display = "";
+		E("lc_visit").style.display = "none";
 		E("dg_apply_3").style.display = "none";
 	}
 }
@@ -439,16 +464,22 @@ function validateInput(input, minValue, maxValue) {
 														<input type="checkbox" id="lookcat_start" style="vertical-align:middle;">
 													</td>
 												</tr>
-												<tr id="lc_sleep">
+												<!-- <tr id="lc_sleep">
 													<th><span onmouseover="mOver(this, 1)" onmouseleave="mOut(this)">开机启动延迟</span></th>
 													<td>
 														<input type="text" id="lookcat_sleep" oninput="validateInput(this, 1, 1000)" style="width: 50px;" maxlength="5" class="input_3_table" autocorrect="off" autocapitalize="off" style="background-color: rgb(89, 110, 116);" value="60">
 													</td>
-												</tr>
+												</tr> -->
 												<tr id="lc_addr">
 													<th><span>光猫访问地址</span></th>
 													<td>
 														<input type="text" id="lookcat_addr"  style="width: 150px;" class="input_3_table" autocorrect="off" autocapitalize="off" style="background-color: rgb(89, 110, 116);" value="192.168.1.1">
+													</td>
+												</tr>
+												<tr id="lc_visit">
+													<th>访问</th>
+													<td>
+														<a type="button" style="vertical-align:middle;cursor:pointer;" id="dgnav" class="ks_btn" href="" target="_blank">访问光猫</a>
 													</td>
 												</tr>
 											</table>

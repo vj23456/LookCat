@@ -7,5 +7,5 @@
     "module": "lookcat", 
     "tags": "工具", 
     "title": "光猫助手", 
-    "version": "1.3"
+    "version": "1.4"
 }

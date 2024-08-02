@@ -1,5 +1,5 @@
 #!/bin/sh
-eval $(dbus export ddnsgo_)
+eval $(dbus export lookcat_)
 source /koolshare/scripts/base.sh
 
 if [ "$lookcat_enable" == "1" ];then
