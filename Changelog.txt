@@ -1,5 +1,11 @@
 KoolCenter LookCat Changelog
 ===========================================
+1.6
+   - update   支持新的ddnsto域名
+
+1.5
+   - fix      修复新版web显示
+
 1.4
    - add      添加快速访问按钮
    - remove   延迟启动功能

@@ -166,10 +166,14 @@ function pannel_access(){
 	if(dbus["lookcat_enable"] == "1"){
 		var protocol = "http:";
 		var hostname = document.domain;
-		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
+		if (hostname.indexOf('.kooldns.cn') != -1 || hostname.indexOf('.gd.ddnsto.com') != -1 || hostname.indexOf('.x.ddnsto.com') != -1 || hostname.indexOf('.ddnsto.com') != -1 || hostname.indexOf('.tocmcc.cn') != -1) {
 			protocol = location.protocol;//如果是走的ddnsto则不管是否开启公网开关。
 			if(hostname.indexOf('.kooldns.cn') != -1){
 				hostname = hostname.replace('.kooldns.cn','-cat.kooldns.cn');
+			}else if(hostname.indexOf('.gd.ddnsto.com') != -1){
+				hostname = hostname.replace('.gd.ddnsto.com','-cat.gd.ddnsto.com');
+			}else if(hostname.indexOf('.x.ddnsto.com') != -1){
+				hostname = hostname.replace('.x.ddnsto.com','-cat.x.ddnsto.com');
 			}else if(hostname.indexOf('.ddnsto.com') != -1){
 				hostname = hostname.replace('.ddnsto.com','-cat.ddnsto.com');
 			}else{
